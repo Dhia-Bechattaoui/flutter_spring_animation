@@ -37,10 +37,22 @@ class SpringAnimation {
   bool _isRunning = false;
 
   // Test-only getters and setters for private fields
-  set currentValue(double value) => _currentValue = value;
+  /// Test-only getter for the current value.
+  double get currentValueTest => _currentValue;
 
-  set currentVelocity(double velocity) => _currentVelocity = velocity;
+  /// Test-only setter for the current value.
+  set currentValueTest(double value) => _currentValue = value;
 
+  /// Test-only getter for the current velocity.
+  double get currentVelocityTest => _currentVelocity;
+
+  /// Test-only setter for the current velocity.
+  set currentVelocityTest(double velocity) => _currentVelocity = velocity;
+
+  /// Test-only getter for the running state.
+  bool get isRunningTest => _isRunning;
+
+  /// Test-only setter for the running state.
   set isRunningTest(bool running) => _isRunning = running;
 
   /// The current value of the animation.
@@ -157,11 +169,11 @@ class SpringAnimation {
       config: config,
       from: _currentValue,
       to: newTarget,
-    );
-    newAnimation._currentValue = _currentValue;
-    newAnimation._currentVelocity = _currentVelocity;
-    newAnimation._lastTime = _lastTime;
-    newAnimation._isRunning = _isRunning;
+    )
+      .._currentValue = _currentValue
+      .._currentVelocity = _currentVelocity
+      .._lastTime = _lastTime
+      .._isRunning = _isRunning;
 
     // Copy the new state back
     _currentValue = newAnimation._currentValue;
@@ -174,23 +186,19 @@ class SpringAnimation {
   ///
   /// This is useful for creating normalized animations that can be
   /// used with interpolation functions.
-  static SpringAnimation normalized({
+  SpringAnimation.normalized({
     required SpringConfig config,
-  }) {
-    return SpringAnimation(
-      config: config,
-      from: 0.0,
-      to: 1.0,
-    );
-  }
+  })  : from = 0.0,
+        to = 1.0,
+        this.config = config,
+        _currentValue = 0.0,
+        _currentVelocity = config.velocity;
 
   @override
-  String toString() {
-    return 'SpringAnimation('
-        'from: $from, '
-        'to: $to, '
-        'value: $_currentValue, '
-        'velocity: $_currentVelocity, '
-        'isRunning: $_isRunning)';
-  }
+  String toString() => 'SpringAnimation('
+      'from: $from, '
+      'to: $to, '
+      'value: $_currentValue, '
+      'velocity: $_currentVelocity, '
+      'isRunning: $_isRunning)';
 }

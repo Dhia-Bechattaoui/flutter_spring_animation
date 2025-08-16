@@ -50,8 +50,8 @@ void main() {
       );
 
       // Simulate some state changes
-      animation.currentValue = 0.5;
-      animation.currentVelocity = 2.0;
+      animation.currentValueTest = 0.5;
+      animation.currentVelocityTest = 2.0;
       animation.isRunningTest = true;
 
       animation.reset();
@@ -109,8 +109,8 @@ void main() {
           to: 1.0,
         );
 
-        animation.currentValue = 1.0;
-        animation.currentVelocity = 0.0;
+        animation.currentValueTest = 1.0;
+        animation.currentVelocityTest = 0.0;
         animation.isRunningTest = false;
 
         expect(animation.isCompleted, true);
@@ -123,8 +123,8 @@ void main() {
           to: 1.0,
         );
 
-        animation.currentValue = 1.0;
-        animation.currentVelocity = 0.0;
+        animation.currentValueTest = 1.0;
+        animation.currentVelocityTest = 0.0;
         animation.isRunningTest = true;
 
         expect(animation.isCompleted, false);
@@ -137,8 +137,8 @@ void main() {
           to: 1.0,
         );
 
-        animation.currentValue = 0.5;
-        animation.currentVelocity = 0.0;
+        animation.currentValueTest = 0.5;
+        animation.currentVelocityTest = 0.0;
         animation.isRunningTest = false;
 
         expect(animation.isCompleted, false);
@@ -153,8 +153,8 @@ void main() {
           to: 1.0,
         );
 
-        animation.currentValue = 1.05;
-        animation.currentVelocity = 0.05;
+        animation.currentValueTest = 1.05;
+        animation.currentVelocityTest = 0.05;
 
         expect(animation.shouldCompleteTest(), true);
       });
@@ -166,8 +166,8 @@ void main() {
           to: 1.0,
         );
 
-        animation.currentValue = 0.9;
-        animation.currentVelocity = 0.1;
+        animation.currentValueTest = 0.9;
+        animation.currentVelocityTest = 0.1;
 
         expect(animation.shouldCompleteTest(), false);
       });
